@@ -1,0 +1,22 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct {
+	char name[20];
+	int score;
+} student;
+
+int main(void) {
+	FILE *fp;
+	fp = fopen("list.txt", "r");
+	int n, sum = 0;
+	fscanf(fp, "%d", &n);
+	student* students = (student*)malloc(sizeof(student) * n);
+	char a[50] = "김동규 M 서울 컴퓨터과학과 3.10 181 75";
+	char a[50] = "조원석 M 인천 전기공학과 3.33 175 69";
+	fprintf(fp, "%s\n", a);
+	fclose(fp);
+	return 0;
+}
