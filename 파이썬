@@ -1,0 +1,61 @@
+'''
+집합 자료형 중 하나인 리스트 자료형을 사용해서 많은 양의 데이터를 하나의 이름으로 다루기(묶기) 또는 그룹핑
+'''
+#1. 홍길동 학생의 국어 점수는 변수에 대입
+hgd_kor=60
+#2. 김길동 학생의 국어 점수는 변수에 대입
+kgd_kor=50
+#3. 나길동 학생의 국어 점수는 변수에 대입
+ngd_kor=100
+#4. 다길동 학생의 국어 점수는 변수에 대입
+dgd_kor=90
+#5. 라길동 학생의 국어 점수는 변수에 대입
+rgd_kor=50
+print("홍길동 학생의 국어점수는 ", hgd_kor)
+print("김길동 학생의 국어점수는 ", kgd_kor)
+print("나길동 학생의 국어점수는 ", ngd_kor)
+print("다길동 학생의 국어점수는 ", dgd_kor)
+print("라길동 학생의 국어점수는 ", rgd_kor)
+
+#새로운 학생인 마길동이 전학을 올 경우 새로운 변수 선언 + 초기화
+#6. 마길동 학생의 국어 점수는 변수에 대입
+mgd_kor=60
+print("마길동 학생의 국어점수는 ", mgd_kor)
+
+#리스트 또는 튜플이라는 집합 자료형을 사용하면 새로운 학생이 전학을 와도 새로운 변수를 만들지 않고
+# 현재 사용하는 변수 같이 사용
+list=[hgd_kor, kgd_kor, ngd_kor, dgd_kor, rgd_kor, mgd_kor]
+print(list)
+
+len_list=len(list)
+print("현재 학생 수는", len_list)
+
+#변수 사용안하고 print함수에서 호출하기
+print("현재 학생 수는", len(list))
+
+
+"""
+현재 list 변수가 갖고 있는 6명 학생의 국어 점수를 다 더한 후 총점 구하기
+ -> 리스트 변수 안에 각각의 점수 구분할 수 있는 인덱스 존재 ( 첨자 또는 위치 또는 순서 번호)
+     첫 번째 값0, 두번째 값1...
+    리스트 변수에서 첫 번째 값만 가져오면 변수 이름 0
+"""
+
+print("첫 번째 학생의 국어 점수는:", list[0])
+print("두 번째 학생의 국어 점수는:", list[1])
+print("세 번째 학생의 국어 점수는:", list[2])
+print("네 번째 학생의 국어 점수는:", list[3])
+print("다섯 번째 학생의 국어 점수는:", list[4])
+print("여섯 번째 학생의 국어 점수는:", list[5])
+#마지막
+last_index=len(list)-1
+last_student_kor=list[last_index]
+print("마지막 학생의 국어 점수는:", last_student_kor)
+#총점
+sum_kor=list[0]+list[1]+list[2]+list[3]+list[4]+list[5]
+print("6명 학생의 국어 점수 총점은", sum_kor)
+#평균 구하기
+avg_kor=sum_kor//len(list)
+print("6명 학생의 국어 점수 평균은", avg_kor)
+avg_kor2=sum_kor/len(list)
+print("6명 학생의 국어 점수 평균은", avg_kor2)
