@@ -1,0 +1,39 @@
+first_num=int(input("첫 번째 정수:"))
+second_num=int(input("두 번째 정수:"))
+max_num=min_num=0
+if(first_num>second_num):
+    max_num=first_num
+    min_num=second_num
+elif(first_num<second_num):
+    max_num=second_num
+    min_num=first_num
+else:
+    max_num=min_num=first_num
+
+print('큰수는', max_num, '작은 수는', min_num)
+
+
+# 한번에 두개 정수 입력받기 : map 내장함수 사용하기 (변수명1,변수명2=map(int,input().split())
+first_num,second_num=map(int,input("2개의 정수를 차례로 입력하세요:").split())
+max_num=min_num=0
+if(first_num>second_num):
+    max_num=first_num
+    min_num=second_num
+elif(first_num<second_num):
+    max_num=second_num
+    min_num=first_num
+else:
+    max_num=min_num=first_num
+
+print('큰수는', max_num, '작은 수는', min_num)
+
+# while문에 변수 사용하기
+i=min_num
+while(i<max_num):
+    print('Hello World!', i)
+    i += 1
+
+i=max_num-1
+while(i>=min_num):
+    print('HELLO', i)
+    i -= 1
