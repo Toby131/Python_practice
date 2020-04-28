@@ -1,0 +1,53 @@
+'''
+키워드 인수 사용하기
+'''
+
+def personal_info(name, age, address):
+    print("이름:", name)
+    print("나이:", age)    #print("나이:" +age) 는 오류! -> print("나이:"+str(age))는 가능
+    print("주소:",address)
+
+personal_info("홍길동", 20, "서울시 용산구 이촌동") #고정인수방법
+print()
+personal_info(name="홍길동", address="서울시 용산구 이촌동", age=20)    #키워드방식
+
+print() ; print()
+'''
+** 두 번 사용하기
+'''
+def personal_info(**kwargs):
+    if len(kwargs)==0:
+        print("외부에서 전달한 인수가 하나도 없습니다.")
+    else :
+        for k, v in kwargs.items():
+            print("키:", k, "값:", v)
+
+x={'name':'김길동', 'age':30, 'address':'서울시'}
+personal_info(**x)
+personal_info( )
+
+print() ; print()
+'''
+매개변수에 초깃값 지정하기
+'''
+def personal_info(name, age, address='경기도 의왕시'):
+    print("이름:", name)
+    print("나이:", age)
+    print("주소:",address)
+personal_info('나길동',40)
+print()
+
+def personal_info2(name, age=50, address='경기도 안양시'):
+    print("이름:", name)
+    print("나이:", age)
+    print("주소:",address)
+personal_info2('다길동')
+print()
+
+def personal_info3(age, address, name='라길동'):
+    print("이름:", name)
+    print("나이:", age)
+    print("주소:",address)
+personal_info3( 60,'경기도 고양시', )
+
+
