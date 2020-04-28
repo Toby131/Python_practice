@@ -1,0 +1,72 @@
+'''
+hello() 이름을 갖는 새로운 함수 정의하기
+'''
+
+def hello():
+    print('hello, world!')
+
+#위에서 정의한 함수 호출(사용)
+hello()
+
+'''
+ 간단한 계산기 예제 구현하기
+ 1. 덧셈 기능 갖는 add()함수
+ 2. 뺄셈 기능 갖는 sub()함수
+ 3. 곱셈 기능 갖는 mul()함수
+ 4. 나눗셈 기능 갖는 몫을 반환하는 div1(), 나머지를 반환하는 div2()함수
+ '''
+def add(a, b):
+    print(a+b)
+
+def sub(a, b):
+    print(a-b)
+
+def mul(a, b):
+    print(a*b)
+
+def div1(a, b):
+    if b != 0:
+        print(a/b)
+    else:
+        print("0은 계산할 수 없습니다")
+
+def div2(a,b):
+    if b != 0:
+        print(a%b)
+    else:
+        print("0은 계산할 수 없습니다")
+        
+#사용자로부터 받은 2개의 정수 입력받기
+input_a,input_b=map(int, input("2개 정수 쉼표로 구분해 입력:").split(','))
+
+#위에서 정의한 함수 호출 ; 매개변수 a에는 input_a 값 전달, b에는 input_b전달
+add(input_a,input_b)
+sub(input_a,input_b)
+mul(input_a,input_b)
+div1(input_a,input_b)
+div2(input_a,input_b)
+
+'''
+함수 정의 시, return 명령어 작성 가능 : 일반적으로는 반환값이 1개이나, 파이썬에서는 여러 값 반환 가능함
+'''
+#새 함수 func1정의 후 return 100
+def func1():
+    return 100
+#새 함수 func2 정의후 return 100,200
+def func2():
+    return 100,200
+
+#위에서 정의한 func1()함수 호출
+a=func1()
+print(a)
+
+c=a+20
+print(c)
+
+print(func1())
+
+print(func1()+func1())
+
+#위에서 정의한 func2()함수 호출
+a,b=func2()
+print(a,b)
