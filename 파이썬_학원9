@@ -1,0 +1,39 @@
+'''
+재귀호출사용하기
+'''
+def hello(count):
+    if count == 0 :
+        return
+    print("HELLO WORLD!", count)
+    count -= 1
+    hello(count)
+hello(5)
+
+'''
+재귀호출 방법 사용해 팩토리얼 계산
+'''
+
+def factorial(n):
+    print("현재 매개변수 n값", n)
+    if n <= 1:
+        print("매개변수 n값은 1이하")
+        return 1
+    return n * factorial(n-1)
+
+ret_value=factorial(5)
+print("5!=", ret_value)
+
+
+'''
+연습문제 : 재귀호출로 회문 판별하기
+'''
+def is_palindrome(word):
+    if len(word) <2 :
+        return True
+    if word[0] != word[-1]:
+        return False
+    return is_palindrome(word[1:-1])
+
+print(is_palindrome("HELLO"))
+print(is_palindrome("LEVEL"))
+print(is_palindrome("오디오"))
