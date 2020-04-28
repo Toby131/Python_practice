@@ -1,0 +1,42 @@
+'''
+연습문제 : 가장 높은 점수 구하는 함수 만들기
+1. 파이썬에서 제공해주는 max()내장함수 사용하기
+2. 반복문과 if 조건문 사용해 구하기
+'''
+
+## 1. max() 내장 함수 사용하기
+def get_max_score(*args):
+    if(len(args) == 0):
+        return "점수가 하나도 없습니다."
+    else :
+        return max(args)
+korean, english, mathmatics, science = 100, 86, 81, 91
+max_score=get_max_score(korean, english, mathmatics, science)
+print("최고 점수는", max_score)
+
+## 2. 반복문과 if 조건문 사용하기
+korean, english, mathmatics, science = 100, 86, 81, 91      #4과목 점수들 리스트 변수에 저장하기
+score_list=[korean, english, mathmatics, science]       #최고점수 보관 변수 선언 + 초기화 : 일반적으로는 첫번째 점수 설정 또는 마지막번째 점수 설정
+
+max_score2=score_list[0]
+#혹은 max_score = score_list[len(score_list)-1]
+#변수 max_score에 보관된 점수와 나머지 점수 차례로 비교한 후 더 큰 점수 발견 시 max_score 갱신
+
+cmp_index=1         #첫번째 점수는 max_score에 있고 나머지 점수 비교해야하니까 english점수 인덱스 지정
+while cmp_index <= len(score_list)-1:
+    if(max_score2 < score_list[cmp_index]):          #max_score보다 큰 점수 찾으면 값 수정하기
+        max_score2 = score_list[cmp_index]
+    cmp_index += 1          #비교할 점수의 인덱스 하나씩 증가
+print("최고점수는", max_score2)
+
+## 2번에서 만든 명령어 get_max_score() 함수 안에 복사하기
+def get_max_score2(*args):
+    max_score3=args[0]
+    cmp_index = 1
+    while cmp_index <= len(args)-1:
+        if(max_score3 < score_list[cmp_index]):
+            max_score3 = score_list[cmp_index]
+        cmp_index += 1
+    return max_score3
+max_score3=get_max_score2(*score_list)
+print("최고 점수 :", max_score3)
