@@ -1,0 +1,51 @@
+'''
+심사문제 : 가장 낮은 점수, 높은 점수와 평균 점수 구하는 함수 만들기
+# 1. get_min_max_score() 함수 정의
+    1) 매개변수 선언 : *args
+    2) 매개변수에 기본값 지정한 방식 사용 : 매개변수이름=기본값
+# 2. get_average() 함수 정의
+'''
+
+korean, english, mathmatics, science = map(int, input().split())
+
+# 1. 1) 매개변수 선언 : *args
+def get_min_max_score(*args):
+    if(len(args) == 0):
+        print ("점수가 하나도 없습니다.")
+        return None     # return False = return ''
+    else :
+        print("과목 개수", len(args))
+        max_score=args[0]   #최고점수 구하기
+        min_score=args[0]   #최저점수 구하기
+        cmp_index = 1      #최고점수 반환하는 while문
+        while cmp_index <= len(args)-1:
+            if(max_score < args[cmp_index]):
+                max_score = args[cmp_index]
+            cmp_index += 1
+        print("최고 점수를 구했음")
+
+        cmps_index = 1      #최저점수 반환하는 while문
+        while cmp_index <= len(args)-1:
+            if(min_score > args[cmp_index]):
+                min_score = args[cmp_index]
+            cmp_index += 1
+        print("최저 점수를 구했음")
+        return min_score, max_score
+
+# get_average() 함수 정의
+def get_average(**kwargs):
+    sum = 0             # 모든 과목 점수 다 더하고 sum 변수에 보관
+    for v in kwargs.values():
+        sum += v
+    print("모든 과목 점수의 총합을 구했음")
+    avg=sum/len(kwargs)
+    return avg
+
+
+min_score, max_score = get_min_max_score(korean, english, mathmatics, science)
+average_score=get_average(korean=korean, english=english, mathmatics=mathmatics, science=science)
+print('낮은 점수 : {0:.2f}, 높은 점수: {1:.2f}, 평균 점수:{2:.2f}'.format(min_score, max_score, average_score))
+
+min_score, max_score = get_min_max_score(english, science)
+average_score=get_average(english=english, science=science)
+print('낮은 점수 : {0:.2f}, 높은 점수: {1:.2f}, 평균 점수:{2:.2f}'.format(min_score, max_score, average_score))
