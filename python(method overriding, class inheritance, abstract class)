@@ -1,0 +1,148 @@
+'''
+메서드 오버라이딩 사용하기
+1. 메서드 오버라이딩? 부모 클래스에서 자식 클래스로 물려준 메서드의 명령어를 새로운 명령어로 수정 , 추가
+        추가? 부모 클래스에서 물려준 메서드의 명령어를 그대로 사용하고 새로운 명령어를 추가하는 것(=덮어쓰기)
+'''
+#2차원에서 x,y 좌표 관리하는 클래스
+class Point2D:
+    def __init__(self, x=0, y=0):       # 초기화 함수 정의한 후 self.x self.y 속성 선언 + 초기화
+        print("Point2D클래스에서 정의한 초기화 함수 호출")
+        self.x=x
+        self.y=y
+
+    def get_x(self):        #self.x 값 반환 
+        print("self.x값 반환")
+        return self.x
+
+    def set_x(self, new_x):       #self.x 값 수정 
+        print("self.x의 값 수정")
+        self.x=new_x
+
+    def get_y(self):        #self.y 값 반환 
+        print("self.y의 값 반환")
+        return self.y
+
+    def set_y(self, new_y):       #self.y 값 수정 
+        print('self.y 값 수정')
+        self.y=new_y
+
+    # 재정의할 함수 정의 하기 : 기능은 self.x와 self.y의 값 모두 읽어 화면에 출력
+    def all_point(self):
+        print("모든 좌표 읽어서 화면에 출력")
+        print("x 좌표",self.get_x, "y좌표", self.get_y())
+
+#Point2D클래스를 사용해 새로운 객체 선언
+a=Point2D()
+#get_x()함수 호출
+print("현재 x좌표 값", a.get_x())
+#get_y()함수 호출
+print("현재 y좌표 값", a.get_y())
+#두번째 객체 선언 : x좌표는 30, y좌표는 50으로 설정
+b=Point2D(30,50)
+print("객체 b의 x좌표", b.get_x())
+print("객체  b의 y좌표", b.get_y())
+
+#set_x()함수 호출해 x좌표값 수정
+b.set_x(b.get_x()+5)
+print("수정된 객체 b의 x좌표", b.get_x())
+
+
+
+print()
+'''
+상속을 위해 위에서 정의한 Point2D클래스를 상속받는 Point3D클래스 정의
+'''
+class Point3D(Point2D):     #초기화 함수 정의 : 부모 클래스에서 정의한 __init__()함수 호출
+    def __init__(self, x=0, y=0, z=0):
+        print("Point3D 클래스에서 정의한 초기화함수가 호출됨")
+        super().__init__()
+        self.x=x
+        self.y=y
+        self.z=z
+
+        # self.x self.y 속성은 상속받은 get_x() get_y() set_x() set_y()그대로 사용가능
+    def method1(self):
+        print('method1(self) 함수가 호출됨')
+        print('상속받은 self.get_x()함수 호출')
+        print(self.get_x())
+        print("상속받은 self.get_y()함수 호출")
+        print(self.get_y())
+
+        # Point3D에서 새로 추가한 self.z 속성에 대한 새로운 메서드 정의
+    def get_z(self):
+        print("현재 self.z 속성 값 반환")
+        return self.z
+
+    def set_z(self, new_z):
+        print("현재 set.z 속성값 수정")
+        self.z=new_z
+
+    # 부모클래스로부터 상속받은 all_point 함수 재정의
+    def all_point(self):
+        print("모든 좌표값 읽어와 화면에 출력")
+        print("x좌표", self.get_x(), "y좌표", self.get_y(), "z좌표:", self.get_z())
+    
+        
+a=Point3D()
+a.method1()
+
+b=Point3D(10,20,30)
+b.method1()
+
+print(b.get_z())
+b.set_z(b.get_z()+5)
+print(b.get_z())
+
+# 재정의한 all_point()함수출력
+b.all_point()
+
+
+
+print()
+'''
+추상 클래스 정의해서 삼각형, 사각형, 원 도형의 면적을 구하는 예제 작성
+        ( 추상 메서드 : 실행할 명령어를 갖지 않는 메서드 -> 왜 필요할까? 새 클래스를 정의하는데 도움 주기 위함)
+'''
+from abc import *
+
+#추상클래스 정의
+#모든 도형에서 함께 사용할 공유 메서드를 추상 메서드로 정의하고 추상 클래스에 포함시키기 -> 왜? 도형마다 면적 구하는 명령어 다르니까
+class MyShape(metaclass=ABCMeta):
+    @abstractmethod
+    def get_area(self):     #모든 도형에서 넓이 구할 때 사용할 추상 메서드 선언
+        pass
+
+#위에서 정의한 추상 클래스인 MyShape를 상속받는 삼각형 클래스 정의하기
+class MyTri(MyShape):       #추상메서드 꼭 재정의해야 -> 왜? 재정의 안하면 추상클래스가 되니까
+    def get_area(self):
+        print("삼각형 도형 면적 구하기")
+        input_base=float(input('삼각형 도형의 밑변 실수로 입력'))
+        input_height=float(input('삼각형 도형의 높이 실수로 입력'))
+        result=input_base*input_height*0.5
+        return result
+    
+#위에서 정의한 추상 클래스인 MyShape를 상속받는 사각형 클래스 정의하기
+class MyRec(MyShape):
+    def get_area(self):
+        print("사각형 도형 면적 구하기")
+        input_width=int(input('사각형 가로길이 정수로 입력'))
+        input_height=int(input('사각형 세로길이 정수로 입력'))
+        result=input_width*input_height
+        return result
+
+#위에서 정의한 추상 클래스인 MyShape를 상속받는 원 클래스 정의하기
+class MyCir(MyShape):
+    def get_area(self):
+        print("원 도형 면적 구하기")
+        input_radius=float(input('원 도형의 반지름 실수로 입력'))
+        result=input_radius*input_radius*3.14
+        return result    
+
+a=MyTri()
+print("삼각형 면적:", a.get_area())
+
+b=MyRec()
+print("사각형 면적:", b.get_area())
+
+c=MyCir()
+print("원 면적:", c.get_area())
