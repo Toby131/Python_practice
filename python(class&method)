@@ -1,0 +1,146 @@
+'''
+클래스와 메서드 : person이라는 클래스 새로 정의해 사용하기
+'''
+class Person:
+    def hello(self):  #메서드 정의
+        print('hello')
+
+#정의한 클래스 사용 위해서는 인스터스 만들어야
+james=Person()
+
+# .(점)연산자를 사용해 person 클래스 내부로 이동하고 hello()함수 실행
+james.hello()
+
+
+print()
+'''
+Person1 클래스 정의하기
+1. greeting 메서드와 hello 메서드 정의
+2. greeting 메서드에서는 Hello 메시지 출력
+3. hello 메서드에서는 self.greeting() 명령어 사용해 클래스 안에서 정의한 greeting() 메서드 호출
+'''
+class Person1:
+    def greeting(self):
+        print('Hello')
+    def hello(self):
+        self.greeting()
+
+james=Person1()
+james.hello()
+james.greeting()
+
+
+print()
+'''
+isinstance()내장함수 사용하기
+'''
+class Person:
+    pass
+class Person2:
+    pass
+james=Person()
+print(isinstance(james,Person))
+print(isinstance(james,Person2))
+
+
+print()
+'''
+__init__(self) 초기화 함수 정의해 자동으로 호출하기
+'''
+class Person3:
+    def __init__(self):     #__init__(self) 함수 정의
+        print('__init__(self) 초기화 함수가 자동으로 호출됨')
+        self.a=10        # 새로운변수(인스턴스 변수 / 객체변수) : 새로운 객체가 메모리에 만들어질 때 마다 새로 생성되는 변수
+        print('인스턴스 변수인 a의 값은?', self.a)
+
+
+james1=Person3()
+james2=Person3()
+james3=Person3()
+
+
+print()
+'''
+새 클래스 정의하여 각각 다른 값으로 초기화하기
+'''
+class Person4:
+    def __init__(self, pa=20):
+        print('__init__(self, pa=20) 초기화 함수가 자동으로 호출됨')
+        self.a=pa
+        print('외부에서 받은 값은?', pa)
+        print('self.a 인스턴스 변수의 초기값?', self.a)
+
+
+james4=Person4() # = james4=Person4(__init__함수에서 지정한 매개변수의 기본값)
+james5=Person4(100)
+james6=Person4('홍길동')
+james7=Person4(3.14)
+james8=Person4(True)
+
+
+print()
+'''
+Person 클래스 새로 정의 : __init__() 초기화 함수를 정의 : 매개변수를 가변인수로 선언
+'''
+class Person5:
+    def __init__(self, *args):
+        if len(args) == 0:
+            print("외부로부터 받은 인수의 개수는 0개")
+        else :
+            for i in args:
+                print(i)
+james9=Person5('HELLO')
+james10=Person5()
+james11=Person5('안녕하세요')
+
+
+print()
+'''
+비공개 속성과 메서드 사용하기
+'''
+class Person6:
+    def __init__(self, name='홍길동',age=20, address='서울시'):
+        print("비공개 속성만들고 사용")
+        self.__name=name
+        self.__age=age
+        self.__address=address
+        print("이름은", self.__name,'나이는', self.__age, '주소는', self.__address)
+
+maria=Person6()
+
+
+print()
+'''
+비공개 메서드 사용하기
+'''
+class Person7:
+    def __init__(self, a=10):
+        self.a=a
+    def __func1(self):      #비공개 메서드 만들기 형식 : def __함수명(self):
+        print("비공개 메서드인 __func1(self)만들기")
+    def func2(self):
+        print("공개 메서드인 func2(self)만들기")
+        print("self.a.변수값=", self.a)
+        self.__func1()      #비공개 메서드 호출 형식 : self.__함수명()
+
+maria2=Person7()
+#maria2.__func1()        #비공개 메서드인 __func1()함수 호출 : 에러 발생
+maria2.func2()
+
+
+print()
+'''
+연습문제 : 게임 캐릭터 클래스 만들기
+'''
+class Knight :
+    def __init__(self, health,mana,armor):
+        self.health=health
+        self.mana=mana
+        self.armor=armor
+
+    def slash(self):
+        print('베어내기')
+        
+x=Knight(health=542.4,mana=210.3,armor=38)
+print(x.health, x.mana, x.armor)
+x.slash()
