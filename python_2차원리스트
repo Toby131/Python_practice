@@ -1,0 +1,75 @@
+'''2차원 리스트'''
+list1=[[10,20],[30,40],[50,60]]
+print(list1[0][0])
+print(list1[0][1])
+print(list1[1][0])
+print(list1[1][1])
+print(list1[2][0])
+print(list1[2][1])
+
+for row in range(0,3):
+    for col in range(0,2):
+        print('//행=',row,'/열=',col,'/요소 값=',list1[row][col],end=' ')
+    print()
+
+
+'''톱니형리스트'''
+a=[[10,20],[500,600,700],[9],[30,40],[8],[800,900,1000]]
+#첫번째 행의 열 개수 : len(a[0])
+print('첫번째행 열 개수=',len(a[0]))
+print('행 개수=', len(a))
+#for반복문에서 사용하기
+for row in range(len(a)):
+    for col in range(len(a[row])):
+        print('행=', len(a), '열=', len(a[row]), '요소 값=', a[row][col], end=' ')
+    print()
+
+
+'''새로운 정방행열 선언하고 초기화하기 : 3X2'''
+list2=[['가길동','나길동'],['다길동','라길동'],['마길동','바길동']]
+for x,y in list2:
+    print(x,y)
+
+
+'''while반복문 사용하기'''
+i=0
+while i < len(list2):
+    x,y=list2[i]
+    print(x,y)
+    i += 1
+
+print('--------------------------------------------------')    
+'''while반복문 2번 사용하기'''
+i=0
+while i < len(list2):
+    j=0
+    while j<len(list2[i]):
+        print('행번호',i,'열번호',j,'값',list2[i][j], end=' ')
+        j +=1
+    print()
+    i +=1
+
+    
+print('--------------------------------------------------')
+'''for 반복문으로 1차원 리스트 만들기'''
+list3=[]
+for i in range(10):
+    list3.append(input('값 입력하기'))
+print(list3)
+
+for i in range(len(list3)):
+    print("인덱스는", i, '값', list3[i])
+
+
+print('--------------------------------------------------')
+'''for 반복문으로 2차원 리스트 만들기'''
+A=[]
+for i in range(3):
+    empty=[]
+    for j in range(2):
+        input_data=input("입력하시오")
+        empty.append(input_data)
+    A.append(empty)
+print(A)
+for x1,y1 in A:
+    print(x1,y1)
