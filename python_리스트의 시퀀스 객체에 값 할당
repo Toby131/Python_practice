@@ -1,0 +1,33 @@
+'''
+리스트의 시퀀스 객체에 값 할당하기
+1. 시퀀스 객체를 선언하면서 기본값 설정 : 시퀀스객체명=[값1,값2,...]
+2. 1번에서 설정한 기본값 다른값으로 수정 : 시퀀스객체명[인덱스]=다른값
+'''
+a=[0,0,0,0,0]
+for i in range(len(a)):
+    print("인덱스 번호", i, '요소 값', a[i])
+
+a[0]=a[0]+5
+print(a[0])
+
+
+result=range(10)[slice(4,7,2)]
+print(result)
+a=list(result)
+print(a)
+
+slice1=slice(4,7,2)
+list1=[0,1,2,3,4,5,6,7,8,9]
+tuple1=(0,1,2,3,4,5,6,7,8,9)
+str1='0123456789'
+
+result2=list1[slice1]
+print(result2)
+result3=tuple1[slice1]
+print(result3)
+result4=str1[slice1]
+print(result4)
+
+x=list(input("문자열 입력"))
+del x[5:10]
+print(x)
