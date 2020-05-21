@@ -1,0 +1,76 @@
+'''회문판별과 N-gram 만들기'''
+input_word=input('회문 판단을 위한 문자열을 입력하세요:')
+
+is_pd=True
+for i in range(len(input_word) // 2 ) :
+    if input_word[i] != input_word[-1-i]:
+        is_pd=False
+        break
+if is_pd == True:
+    print('회문')
+else:
+    print('회문아님')
+
+print('-------------------------------------------------')
+'''시퀀스 뒤집기로 문자 검사하기'''
+word=input("문자 입력하시오:")
+print("사용자가 입력한 문자열:", word)
+print("사용자가 입력한 문자열을 뒤집으면:", word[::-1])
+result=word==word[::-1]
+if result == True:
+    print("사용자가 입력한 문자는 회문")
+else :
+    print("사용자가 입력한 문자는 회문이 아님")
+
+print('-------------------------------------------------')
+'''리스트와 reversed() 함수 사용하기'''
+word=input('단어를 입력하시오.')
+print(word,":사용자가 입력한 단어")
+a=list(word)
+print(a,": 한 글자씩 분리된 단어")
+b=list(reversed(word))
+print(b, ": 한 글자씩 분리된 리버스 단어")
+if a==b:
+    print("입력한 단어는 회문")
+else:
+    print("입력한 단어는 회문이 아님")
+
+print('-------------------------------------------------')
+'''문자열의 join 메서드와 reversed 사용하기'''
+word=input('단어를 입력하세요')
+if word==''.join(reversed(word)):
+    print('사용자가 입력한 단어는 회문입니다.')
+else:
+    print('사용자가 입력한 단어는 회문이 아닙니다.')
+
+print('-------------------------------------------------')
+'''반복문으로 N-gram 출력하기'''
+text=input("N-gram을 만들 문자 입력:")
+for i in range(len(text)-1):
+    a=text[i]
+    b=text[i+1]
+    print(a,b,sep='')
+
+print('-------------------------------------------------')
+'''공백을 기준으로 문자열을 분리하여 리스트로 만들기'''
+text=input("문자열을 입력하세요:")
+words=text.split()
+print("공백을 기준해 문자열을 분리한 결과 : ", words)
+for i in range(len(words)-1):
+    first=words[i]
+    second=words[i+1]
+    print(first,second)
+print("모든 단어들을 2-gram으로 출력함")
+
+print('-------------------------------------------------')
+'''zip으로 2-gram만들기'''
+text=input("2-gram을 만들 단어 입력:")
+print('변수 text에 보관된 문자열 : ', text)
+two_gram=zip(text, text[1:])
+for i in two_gram:
+    first=i[0]
+    second=i[1]
+    print(first, second, sep='')
+print('2-gram 출력완료')
+    
+print('-------------------------------------------------')
