@@ -1,0 +1,121 @@
+'''변수의 사용범위 알아보기 : 전역 변수와 지역 변수의 사용범위 이해하기'''
+x=10
+def fnc1():
+    print('fnc1()함수가 호출됨')
+    print('전역변수 x값 : ', x)
+
+def fnc2():
+    print('fnc2() 함수가 호출됨')
+    global x
+    x=100
+    print('수정된 전역변수 x값 : ', x)
+#함수 호출
+fnc1()
+fnc2()
+#함수 외부에서 전역변수 값 확인
+print('함수 외부에서 전역변수 x 값 : ', x)
+
+print("----------------------------------------")
+'''함수 안에서 전역 변수 이름과 동일한 변수를 선언한 경우 : 지역변수가 먼저'''
+y=20
+def fnc3():
+    y=30
+    print('fnc3()함수 호출')
+    print('변수 y값 : ', y)
+    print('지역변수 y의 주소 : ' , id(y))
+fnc3()
+#전역변수 y 주소출력
+print('전역변수 y의 주소 : ', id(y))
+
+print("----------------------------------------")
+'''함수 외부에서 함수 안에서 선언한 지역변수 사용하기'''
+def fnc4():
+    z=50        #지역변수 z 선언&초기화
+    print('fnc4()함수 호출')
+    print('지역변수 z 값 : ', z)
+# print('함수 외부에서 지역변수 z의 값 : ', z) : 오류발생
+
+print("----------------------------------------")
+'''함수 안에서 함수 만들기(중첩 구조 함수 만들기)'''
+def print_hello():  #외부에서 호출받는 외부함수 정의
+    hello='hello world!'    #변수 선언&초기화
+    def print_message():    #내부함수 정의
+        print(hello)    #외부함수에서 선언한 변수 hello 사용가능
+    print_message() #함수호출
+print_hello()   #함수호출
+
+print("----------------------------------------")
+'''외부 함수에서 지역변수의 범위 : 내부 모든 함수에서 함께 사용 가능'''
+def outer_fnc1():
+    print('외부함수 outer_fnc1()호출')
+    local_a=100
+    def inner_fnc1():
+        print('내부함수 inner_fnc1()호출')
+        print('local_a 변수의 값 : ', local_a)
+    def inner_fnc2():
+        print('내부함수 inner_fnc2()호출')
+        print('local_a 변수 값 : ', local_a)
+    def inner_fnc3():
+        print('내부함수 inner_fnc3()호출')
+        print('local_a 변수 값 : ', local_a)
+    inner_fnc1()
+    inner_fnc2()
+    inner_fnc3()
+outer_fnc1()
+
+print("----------------------------------------")
+'''지역 변수 변경하기'''
+def A():
+    x=10
+    def B():
+        nonlocal x
+        x=20
+        print('외부함수인 A에서 선언한 지역변수 x값을 20으로 수정')
+        print('지역변수 x값',  x)
+    B()
+    print('내부함수인 B가 실행종료')
+    print('A의 지역변수 x 값 : ', x)
+A()
+
+print("----------------------------------------")
+'''nonlocal이 변수를 찾는 순서'''
+def AA():
+    x=10
+    y=100
+    def B():
+        x=20
+        def C():
+            nonlocal x
+            nonlocal y
+            x=x+30
+            y=y=300
+            print(x)
+            print(y)
+        C()
+    B()
+AA()
+
+print("----------------------------------------")
+'''클로저 사용하기'''
+def outer_calc():
+    a=3
+    b=5
+    def inner_mul_add(x):
+        return a*x+b    #(지역변수a값) X (매개변수x) + (지역변수b)
+    return inner_mul_add    #return 내부함수명 -> 함수의 메모리 위치(주소)반환
+result=outer_calc()     #내부함수의 위치 받음  #변수 result는 내부함수인 inner_mul_add의 주소(위치)를 받음
+print("내부함수인 inner_mul_add의 주소 : ", result)
+#기본적으로 내부함수는 직접 외부에서 호출할 수 없음 -> 내부함수명()
+#클로저에서는 내부함수를 외부 호출명령어로 반환->외부에서 직접 내부 함수를 호출 가능 -> 내부함수명()
+#result(1) = inner_mul_add(1) 같은 의미임
+result2=result(1)
+print('result(1)명령어 == inner_mul_add(1) 명령어 실행 결과 : ', result2)
+#다시 result 변수 사용해 내부함수인 inner_mul_add()호출 가능 -> 형식 : 변수명3=result(값)
+result3=result(2)
+print('result(2)명령어 == inner_mul_add(2) 명령어 실행 결과 : ', result3)
+result4=result(3)
+print('result(3)명령어 == inner_mul_add(3) 명령어 실행 결과 : ', result4)
+result5=result(4)
+print('result(4)명령어 == inner_mul_add(4) 명령어 실행 결과 : ', result5)
+
+print("----------------------------------------")
